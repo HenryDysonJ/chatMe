@@ -1,19 +1,25 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import B from '../../assets/images/b.jpg'
 import LeftArrow from '../../assets/leftArrow'
 import VectorIcon from '../../assets/vector'
 import SendIcon from '../../assets/sendIcon'
 import CameraIcon from '../../assets/camera'
 
-const LiveChatScreen = () => {
+const LiveChatScreen = ({ navigation }: any) => {
+
+    const hanldleBack = (val: any) => {
+        navigation.goBack()
+    }
 
     return (
         <View style={styles.intriContaainer}>
 
             <View style={styles.betweenView}>
                 <View style={styles.rowView}>
-                    <LeftArrow />
+                    <Pressable onPress={hanldleBack}>
+                        <LeftArrow />
+                    </Pressable>
                     <View style={{ ...styles.profile, position: "relative" }}>
                         <Image source={B} style={styles.profile} />
                         {true && <View style={styles.isOnline}></View>}
