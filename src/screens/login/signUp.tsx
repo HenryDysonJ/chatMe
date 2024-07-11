@@ -1,11 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'
+import { Pressable, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'
 import SignupBanner from '../../assets/signUpBanner';
 import UserIcon from '../../assets/user';
 import EmailAtIcon from '../../assets/emailAt';
 import LockIcon from '../../assets/lockIcon';
 
-const Signup = () => {
+const Signup = ({ navigation }: any) => {
+
+    const handleCreate = () => {
+        navigation.navigate('SignIn')
+    }
+    const handleLogin = () => {        
+        navigation.navigate('SignIn')
+    }
 
     return (
         <View style={styles.screenContainer}>
@@ -46,16 +53,19 @@ const Signup = () => {
                     </Text>
                 </View>
 
-                <TouchableHighlight style={styles.btnStyle}>
+                <TouchableHighlight style={styles.btnStyle} onPress={handleCreate}>
                     <Text style={{ ...styles.textStyle, color: '#fff' }}>Create account</Text>
                 </TouchableHighlight>
 
                 <View style={styles.rowStyle}>
-                    <Text style={{ ...styles.textStyle, textAlign: "center", color: '#4d4d4d' }}>Already registered?
-                        <Text style={{ ...styles.textStyle, color: '#5E30E7' }}> Login </Text>
-                    </Text></View>
+                    <Pressable onPress={handleLogin}>
+                        <Text style={{ ...styles.textStyle, textAlign: "center", color: '#4d4d4d' }}>Already registered?
+                            <Text style={{ ...styles.textStyle, color: '#5E30E7' }}> Login </Text>
+                        </Text>
+                    </Pressable>
+                </View>
             </View>
-        </View>
+        </View >
     )
 }
 

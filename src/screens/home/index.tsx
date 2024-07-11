@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { Alert, FlatList, Image, Modal, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
-import Henry from '../../assets/images/henry.png'
-import A from '../../assets/images/a.jpg'
-import B from '../../assets/images/b.jpg'
-import C from '../../assets/images/c.jpg'
-import D from '../../assets/images/d.jpg'
-import E from '../../assets/images/e.jpg'
-import F from '../../assets/images/f.jpg'
-import G from '../../assets/images/g.jpg'
-import H from '../../assets/images/h.jpg'
-import I from '../../assets/images/i.jpg'
-import Notification from '../../assets/notification';
+import { Alert, FlatList, Image, Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import AddChat from '../../assets/addChat';
-import SearchIcon from '../../assets/searchIcon';
 import ChatBubbleIcon from '../../assets/chatBobble';
+import A from '../../assets/images/a.jpg';
+import B from '../../assets/images/b.jpg';
+import C from '../../assets/images/c.jpg';
+import D from '../../assets/images/d.jpg';
+import E from '../../assets/images/e.jpg';
+import F from '../../assets/images/f.jpg';
+import G from '../../assets/images/g.jpg';
+import H from '../../assets/images/h.jpg';
+import Henry from '../../assets/images/henry.png';
+import I from '../../assets/images/i.jpg';
+import Notification from '../../assets/notification';
+import SearchIcon from '../../assets/searchIcon';
 
 const UsersList = [
     {
@@ -63,17 +63,21 @@ const UsersList = [
     },
 ]
 
-const Peoples = ({ name, imag }: any) => {
+const Peoples = ({ name, imag, onPress }: any) => {
     return (
-        <View style={styles.profileView}>
-            <View style={styles.rowView}>
-                <Image source={imag} style={styles.profile} />
-                <Text style={{ ...styles.subtitle, color: "#ffff" }}>{name}</Text>
+        <Pressable onPress={onPress}>
+
+            <View style={styles.profileView}>
+                <View style={styles.rowView}>
+                    <Image source={imag} style={styles.profile} />
+                    <Text style={{ ...styles.subtitle, color: "#ffff" }}>{name}</Text>
+                </View>
+                <ChatBubbleIcon />
             </View>
-            <ChatBubbleIcon />
-        </View>
+        </Pressable>
     )
 }
+
 const Profiles = ({ name, imag, isOnline }: any) => {
     return (
         <View >
@@ -85,9 +89,10 @@ const Profiles = ({ name, imag, isOnline }: any) => {
         </View>
     )
 }
-const Conversation = ({ name, imag, isOnline }: any) => {
+
+const Conversation = ({ name, imag, isOnline, onPress }: any) => {
     return (
-        <View style={styles.profileView}>
+        <Pressable style={styles.profileView} onPress={onPress}>
             <View style={styles.rowView}>
                 <View style={{ ...styles.profile, position: "relative" }}>
                     <Image source={imag} style={styles.profile} />
@@ -102,14 +107,17 @@ const Conversation = ({ name, imag, isOnline }: any) => {
                 <Text style={styles.subtitle}>10.00 Am</Text>
                 <View style={styles.notifyCount}><Text style={styles.badgeCount}>3</Text></View>
             </View>
-        </View>
+        </Pressable>
     )
 }
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: any) => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
+    const hanldleLiveChat = (val: any) => {
+        navigation.navigate('Chat')
+    }
 
     return (
         <View style={styles.sectionContainer}>
@@ -137,7 +145,7 @@ const HomeScreen = () => {
                 <Text style={styles.title}>Conversation</Text>
                 <FlatList
                     data={UsersList}
-                    renderItem={({ item }) => <Conversation name={item.userName} imag={item.userProfile} isOnline={item.isOnline} />}
+                    renderItem={({ item }) => <Conversation name={item.userName} imag={item.userProfile} isOnline={item.isOnline} onPress={(item: any) => hanldleLiveChat(item)} />}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ rowGap: 24, paddingVertical: 24 }}
                 />
@@ -168,7 +176,7 @@ const HomeScreen = () => {
                             <Text style={{ ...styles.title, color: "#ffff", fontWeight: 400 }}>People may know</Text>
                             <FlatList
                                 data={UsersList}
-                                renderItem={({ item }) => <Peoples name={item.userName} imag={item.userProfile} />}
+                                renderItem={({ item }) => <Peoples name={item.userName} imag={item.userProfile} onPress={(item: any) => hanldleLiveChat(item)} />}
                                 showsVerticalScrollIndicator={false}
                                 contentContainerStyle={{ gap: 20, paddingVertical: 14 }}
                             />
@@ -187,7 +195,8 @@ const styles = StyleSheet.create({
     sectionContainer: {
         flex: 1,
         backgroundColor: "#ffff",
-        position: "relative"
+        position: "relative",
+        padding: 20
     },
     profile: {
         height: 40,
@@ -300,7 +309,7 @@ const styles = StyleSheet.create({
     },
     inputStyle: {
         fontSize: 16,
-        width:"92%"
+        width: "92%"
     },
 });
 

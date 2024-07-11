@@ -2,7 +2,11 @@ import React from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import HelloDrible from '../../assets/heloDribble';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }: any) => {
+
+    const handleMove = () => {
+        navigation.navigate('SignUp')
+    }
 
     return (
         <View style={styles.welcomeContaainer}>
@@ -11,7 +15,7 @@ const WelcomeScreen = () => {
                 <Text style={styles.textStyle}>  Welcome to the chat app Here you can make friends, talk to them and also create some room in case of a group talks. Feel free to express yourself.</Text>
             </View>
             <View style={styles.textViewStyle}>
-                <TouchableHighlight style={styles.btnStyle}>
+                <TouchableHighlight style={styles.btnStyle} onPress={handleMove}>
                     <Text style={{ ...styles.textStyle, color: '#fff' }}>Continue</Text>
                 </TouchableHighlight>
             </View>
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     textViewStyle: {
-        flex:2,
+        flex: 2,
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",

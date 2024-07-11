@@ -1,18 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import ChatLogoIcon from '../../assets/chatIcon'
 
-const IntroScreen = () => {
+const IntroScreen = ({ navigation }: any) => {
+
+    setTimeout(() => {
+        navigation.navigate('welcome')
+    }, 2000)
 
     return (
         <View style={styles.intriContaainer}>
+            <StatusBar animated={true} />
             <View style={styles.imgViewStyle}>
                 <ChatLogoIcon />
             </View>
             <View style={styles.vuersionViewStyle}>
                 <Text style={styles.vertionStyle}>V 1.0.1</Text>
             </View>
-
         </View>
     )
 }
@@ -20,6 +24,7 @@ const IntroScreen = () => {
 const styles = StyleSheet.create({
     intriContaainer: {
         flex: 1,
+        backgroundColor: "#ffff"
     },
     imgViewStyle: {
         flex: 7,
