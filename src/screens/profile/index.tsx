@@ -56,8 +56,8 @@ export default function ProfileComponet({ navigation }: any) {
         )
     }
 
-    const DrawerItems = () => (Screens.map((item) => (
-        <DrawerLayout icon={item.icon} label={item.Name} route={item.route} />
+    const DrawerItems = () => (Screens.map((item, i) => (
+        <DrawerLayout key={i} icon={item.icon} label={item.Name} route={item.route} />
     )))
 
     return (

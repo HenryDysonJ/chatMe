@@ -123,7 +123,9 @@ const HomeScreen = ({ navigation }: any) => {
         <View style={styles.sectionContainer}>
             <View style={styles.profileView}>
                 <View style={styles.rowView}>
+                    <Pressable onPress={()=>navigation.openDrawer()}>
                     <Image source={Henry} style={styles.profile} />
+                    </Pressable>
                     <Text style={styles.title}>Hi, Oussama Chahidi !</Text>
                 </View>
                 <View style={styles.notifyContainer}>
