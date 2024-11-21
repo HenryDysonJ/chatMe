@@ -123,15 +123,15 @@ const HomeScreen = ({ navigation }: any) => {
         <View style={styles.sectionContainer}>
             <View style={styles.profileView}>
                 <View style={styles.rowView}>
-                    <Pressable onPress={()=>navigation.openDrawer()}>
-                    <Image source={Henry} style={styles.profile} />
+                    <Pressable onPress={() => navigation.openDrawer()}>
+                        <Image source={Henry} style={styles.profile} />
                     </Pressable>
                     <Text style={styles.title}>Hi, Oussama Chahidi !</Text>
                 </View>
-                <View style={styles.notifyContainer}>
+                <Pressable style={styles.notifyContainer} onPress={() => navigation.navigate('Notification')}>
                     <Notification height={30} width={30} />
                     <View style={styles.badge}><Text style={styles.badgeCount}>3</Text></View>
-                </View>
+                </Pressable>
             </View>
             <View style={{ marginTop: 24 }}>
                 <Text style={styles.title}>Conducts:  <Text style={styles.subtitle}>48 peoples</Text></Text>

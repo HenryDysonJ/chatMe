@@ -9,6 +9,7 @@ import HomeScreen from '../screens/home';
 import LiveChatScreen from '../screens/liveChat';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileComponet from '../screens/profile';
+import Notification from '../screens/notification';
 
 const Auth = () => {
 
@@ -24,7 +25,8 @@ const Auth = () => {
                 <Stack.Screen name='SignIn' component={SignIn} />
                 <Stack.Screen name='Forgot' component={ForgotPassword} />
                 <Stack.Screen name='Home' component={HomeScreen} />
-                <Stack.Screen name='Chat' component={LiveChatScreen} />
+                <Stack.Screen name='Chat' component={LiveChatScreen} options={{ animation: 'slide_from_right' }} />
+                <Stack.Screen name='Notification' component={Notification} options={{ animation: 'slide_from_right' }} />
             </Stack.Navigator>
         )
     }
@@ -32,7 +34,7 @@ const Auth = () => {
     const DrawerNavigation = () => {
         return (
             <Drawer.Navigator screenOptions={{ headerShown: false }}
-                drawerContent={(props) => (<ProfileComponet {...props}/>)}
+                drawerContent={(props) => (<ProfileComponet {...props} />)}
             >
                 <Drawer.Screen name='chatmeda' component={StackNavigation} />
             </Drawer.Navigator>
